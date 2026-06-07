@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis, Line, LineChart } from "recharts";
 import { Download, FileText, FileSpreadsheet, FileBarChart, ArrowUpRight } from "lucide-react";
-import { departmentDistribution, enrollmentTrend } from "@/lib/mock-data";
+import { getDashboardOverview } from "@/lib/api/sms.functions";
 
 export const Route = createFileRoute("/reports")({
   head: () => ({ meta: [{ title: "Reports — Scholaris" }] }),
@@ -26,6 +27,13 @@ const reports = [
 ];
 
 function ReportsPage() {
+  const { data } = useQuery({
+    queryKey: ["dashboard-overview"],
+    queryFn: () => getDashboardOverview(),
+  });
+  const departmentDistribution = data?.departmentDistribution ?? [];
+  const enrollmentTrend = data?.enrollmentTrend ?? [];
+
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">

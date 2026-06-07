@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -55,7 +56,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Scholaris — Registrar Portal" },
-      { name: "description", content: "Modern school management system for registrars: students, courses, enrollment, and reporting." },
+      { name: "description", content: "Modern school management system for registrars: students, academic levels, enrollment, and reporting." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -81,11 +82,12 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const content = <Outlet />;
+
   return (
     <QueryClientProvider client={queryClient}>
-      <AppShell>
-        <Outlet />
-      </AppShell>
+      {pathname === "/login" ? content : <AppShell>{content}</AppShell>}
     </QueryClientProvider>
   );
 }

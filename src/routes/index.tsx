@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -11,10 +12,7 @@ import {
   XAxis, YAxis, Cell, Pie, PieChart, Bar, BarChart
 } from "recharts";
 import { StatCard } from "@/components/StatCard";
-import {
-  activities, departmentDistribution, enrollmentTrend,
-  todaysClasses, pipelineStages, alerts
-} from "@/lib/mock-data";
+import { getDashboardOverview } from "@/lib/api/sms.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [{ title: "Dashboard — Scholaris" }] }),
@@ -24,12 +22,23 @@ export const Route = createFileRoute("/")({
 const COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"];
 
 function DashboardPage() {
+  const { data } = useQuery({
+    queryKey: ["dashboard-overview"],
+    queryFn: () => getDashboardOverview(),
+  });
+
+  if (!data) {
+    return <div className="rounded-2xl border border-border bg-card p-6 text-sm text-muted-foreground shadow-soft">Loading dashboard...</div>;
+  }
+
+  const { activities, departmentDistribution, enrollmentTrend, todaysClasses, pipelineStages, alerts } = data;
+
   return (
     <div className="space-y-6">
       {/* Stats */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard index={0} label="Active Students" value="1,284" delta={4.2} icon={Users} accent="from-primary to-primary-glow" />
-        <StatCard index={1} label="Open Courses" value={87} delta={2.1} icon={BookOpen} accent="from-chart-2 to-chart-3" />
+        <StatCard index={1} label="Academic Levels" value={87} delta={2.1} icon={BookOpen} accent="from-chart-2 to-chart-3" />
         <StatCard index={2} label="New Enrollments" value={128} delta={12.6} icon={ClipboardCheck} accent="from-chart-4 to-chart-1" />
         <StatCard index={3} label="Graduation Rate" value="96.4%" delta={-0.4} icon={GraduationCap} accent="from-chart-3 to-chart-5" />
       </div>
@@ -148,7 +157,7 @@ function DashboardPage() {
             {[
               { label: "Add Student", icon: UserPlus },
               { label: "Schedule", icon: Calendar },
-              { label: "New Course", icon: BookOpen },
+              { label: "New Academic Level", icon: BookOpen },
               { label: "Report", icon: FileText },
             ].map((q, i) => (
               <motion.button
@@ -182,7 +191,7 @@ function DashboardPage() {
           <div className="mt-4 space-y-2.5">
             {todaysClasses.map((c, i) => (
               <motion.div
-                key={c.course + c.time}
+                key={c.academicLevel + c.time}
                 initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.35 + i * 0.04 }}
                 className={cn(
@@ -198,7 +207,7 @@ function DashboardPage() {
                 )} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">{c.course}</span>
+                    <span className="text-sm font-medium">{c.academicLevel}</span>
                     <span className="text-xs text-muted-foreground">{c.time}</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">

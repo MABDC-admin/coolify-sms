@@ -11,9 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StudentsRouteImport } from './routes/students'
 import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as RegistrationRouteImport } from './routes/registration'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as EnrollmentRouteImport } from './routes/enrollment'
-import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as AcademicLevelsRouteImport } from './routes/academic-levels'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RegistrarSectionsClassAssignmentRouteImport } from './routes/registrar.sections-class-assignment'
+import { Route as RegistrarRegistrarSettingsRouteImport } from './routes/registrar.registrar-settings'
+import { Route as RegistrarLearnerProfileRouteImport } from './routes/registrar.learner-profile'
+import { Route as RegistrarDocumentsManagementRouteImport } from './routes/registrar.documents-management'
+import { Route as RegistrarModuleIdRouteImport } from './routes/registrar.$moduleId'
+import { Route as ApiHealthRouteImport } from './routes/api.health'
 
 const StudentsRoute = StudentsRouteImport.update({
   id: '/students',
@@ -25,14 +33,24 @@ const ReportsRoute = ReportsRouteImport.update({
   path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegistrationRoute = RegistrationRouteImport.update({
+  id: '/registration',
+  path: '/registration',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnrollmentRoute = EnrollmentRouteImport.update({
   id: '/enrollment',
   path: '/enrollment',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CoursesRoute = CoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
+const AcademicLevelsRoute = AcademicLevelsRouteImport.update({
+  id: '/academic-levels',
+  path: '/academic-levels',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -40,43 +58,148 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegistrarSectionsClassAssignmentRoute =
+  RegistrarSectionsClassAssignmentRouteImport.update({
+    id: '/registrar/sections-class-assignment',
+    path: '/registrar/sections-class-assignment',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const RegistrarRegistrarSettingsRoute =
+  RegistrarRegistrarSettingsRouteImport.update({
+    id: '/registrar/registrar-settings',
+    path: '/registrar/registrar-settings',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const RegistrarLearnerProfileRoute = RegistrarLearnerProfileRouteImport.update({
+  id: '/registrar/learner-profile',
+  path: '/registrar/learner-profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistrarDocumentsManagementRoute =
+  RegistrarDocumentsManagementRouteImport.update({
+    id: '/registrar/documents-management',
+    path: '/registrar/documents-management',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const RegistrarModuleIdRoute = RegistrarModuleIdRouteImport.update({
+  id: '/registrar/$moduleId',
+  path: '/registrar/$moduleId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiHealthRoute = ApiHealthRouteImport.update({
+  id: '/api/health',
+  path: '/api/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/courses': typeof CoursesRoute
+  '/academic-levels': typeof AcademicLevelsRoute
   '/enrollment': typeof EnrollmentRoute
+  '/login': typeof LoginRoute
+  '/registration': typeof RegistrationRoute
   '/reports': typeof ReportsRoute
   '/students': typeof StudentsRoute
+  '/api/health': typeof ApiHealthRoute
+  '/registrar/$moduleId': typeof RegistrarModuleIdRoute
+  '/registrar/documents-management': typeof RegistrarDocumentsManagementRoute
+  '/registrar/learner-profile': typeof RegistrarLearnerProfileRoute
+  '/registrar/registrar-settings': typeof RegistrarRegistrarSettingsRoute
+  '/registrar/sections-class-assignment': typeof RegistrarSectionsClassAssignmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/courses': typeof CoursesRoute
+  '/academic-levels': typeof AcademicLevelsRoute
   '/enrollment': typeof EnrollmentRoute
+  '/login': typeof LoginRoute
+  '/registration': typeof RegistrationRoute
   '/reports': typeof ReportsRoute
   '/students': typeof StudentsRoute
+  '/api/health': typeof ApiHealthRoute
+  '/registrar/$moduleId': typeof RegistrarModuleIdRoute
+  '/registrar/documents-management': typeof RegistrarDocumentsManagementRoute
+  '/registrar/learner-profile': typeof RegistrarLearnerProfileRoute
+  '/registrar/registrar-settings': typeof RegistrarRegistrarSettingsRoute
+  '/registrar/sections-class-assignment': typeof RegistrarSectionsClassAssignmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/courses': typeof CoursesRoute
+  '/academic-levels': typeof AcademicLevelsRoute
   '/enrollment': typeof EnrollmentRoute
+  '/login': typeof LoginRoute
+  '/registration': typeof RegistrationRoute
   '/reports': typeof ReportsRoute
   '/students': typeof StudentsRoute
+  '/api/health': typeof ApiHealthRoute
+  '/registrar/$moduleId': typeof RegistrarModuleIdRoute
+  '/registrar/documents-management': typeof RegistrarDocumentsManagementRoute
+  '/registrar/learner-profile': typeof RegistrarLearnerProfileRoute
+  '/registrar/registrar-settings': typeof RegistrarRegistrarSettingsRoute
+  '/registrar/sections-class-assignment': typeof RegistrarSectionsClassAssignmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/courses' | '/enrollment' | '/reports' | '/students'
+  fullPaths:
+    | '/'
+    | '/academic-levels'
+    | '/enrollment'
+    | '/login'
+    | '/registration'
+    | '/reports'
+    | '/students'
+    | '/api/health'
+    | '/registrar/$moduleId'
+    | '/registrar/documents-management'
+    | '/registrar/learner-profile'
+    | '/registrar/registrar-settings'
+    | '/registrar/sections-class-assignment'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/courses' | '/enrollment' | '/reports' | '/students'
-  id: '__root__' | '/' | '/courses' | '/enrollment' | '/reports' | '/students'
+  to:
+    | '/'
+    | '/academic-levels'
+    | '/enrollment'
+    | '/login'
+    | '/registration'
+    | '/reports'
+    | '/students'
+    | '/api/health'
+    | '/registrar/$moduleId'
+    | '/registrar/documents-management'
+    | '/registrar/learner-profile'
+    | '/registrar/registrar-settings'
+    | '/registrar/sections-class-assignment'
+  id:
+    | '__root__'
+    | '/'
+    | '/academic-levels'
+    | '/enrollment'
+    | '/login'
+    | '/registration'
+    | '/reports'
+    | '/students'
+    | '/api/health'
+    | '/registrar/$moduleId'
+    | '/registrar/documents-management'
+    | '/registrar/learner-profile'
+    | '/registrar/registrar-settings'
+    | '/registrar/sections-class-assignment'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CoursesRoute: typeof CoursesRoute
+  AcademicLevelsRoute: typeof AcademicLevelsRoute
   EnrollmentRoute: typeof EnrollmentRoute
+  LoginRoute: typeof LoginRoute
+  RegistrationRoute: typeof RegistrationRoute
   ReportsRoute: typeof ReportsRoute
   StudentsRoute: typeof StudentsRoute
+  ApiHealthRoute: typeof ApiHealthRoute
+  RegistrarModuleIdRoute: typeof RegistrarModuleIdRoute
+  RegistrarDocumentsManagementRoute: typeof RegistrarDocumentsManagementRoute
+  RegistrarLearnerProfileRoute: typeof RegistrarLearnerProfileRoute
+  RegistrarRegistrarSettingsRoute: typeof RegistrarRegistrarSettingsRoute
+  RegistrarSectionsClassAssignmentRoute: typeof RegistrarSectionsClassAssignmentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -95,6 +218,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/registration': {
+      id: '/registration'
+      path: '/registration'
+      fullPath: '/registration'
+      preLoaderRoute: typeof RegistrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/enrollment': {
       id: '/enrollment'
       path: '/enrollment'
@@ -102,11 +239,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnrollmentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/courses': {
-      id: '/courses'
-      path: '/courses'
-      fullPath: '/courses'
-      preLoaderRoute: typeof CoursesRouteImport
+    '/academic-levels': {
+      id: '/academic-levels'
+      path: '/academic-levels'
+      fullPath: '/academic-levels'
+      preLoaderRoute: typeof AcademicLevelsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -116,16 +253,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/registrar/sections-class-assignment': {
+      id: '/registrar/sections-class-assignment'
+      path: '/registrar/sections-class-assignment'
+      fullPath: '/registrar/sections-class-assignment'
+      preLoaderRoute: typeof RegistrarSectionsClassAssignmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registrar/registrar-settings': {
+      id: '/registrar/registrar-settings'
+      path: '/registrar/registrar-settings'
+      fullPath: '/registrar/registrar-settings'
+      preLoaderRoute: typeof RegistrarRegistrarSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registrar/learner-profile': {
+      id: '/registrar/learner-profile'
+      path: '/registrar/learner-profile'
+      fullPath: '/registrar/learner-profile'
+      preLoaderRoute: typeof RegistrarLearnerProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registrar/documents-management': {
+      id: '/registrar/documents-management'
+      path: '/registrar/documents-management'
+      fullPath: '/registrar/documents-management'
+      preLoaderRoute: typeof RegistrarDocumentsManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registrar/$moduleId': {
+      id: '/registrar/$moduleId'
+      path: '/registrar/$moduleId'
+      fullPath: '/registrar/$moduleId'
+      preLoaderRoute: typeof RegistrarModuleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/health': {
+      id: '/api/health'
+      path: '/api/health'
+      fullPath: '/api/health'
+      preLoaderRoute: typeof ApiHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CoursesRoute: CoursesRoute,
+  AcademicLevelsRoute: AcademicLevelsRoute,
   EnrollmentRoute: EnrollmentRoute,
+  LoginRoute: LoginRoute,
+  RegistrationRoute: RegistrationRoute,
   ReportsRoute: ReportsRoute,
   StudentsRoute: StudentsRoute,
+  ApiHealthRoute: ApiHealthRoute,
+  RegistrarModuleIdRoute: RegistrarModuleIdRoute,
+  RegistrarDocumentsManagementRoute: RegistrarDocumentsManagementRoute,
+  RegistrarLearnerProfileRoute: RegistrarLearnerProfileRoute,
+  RegistrarRegistrarSettingsRoute: RegistrarRegistrarSettingsRoute,
+  RegistrarSectionsClassAssignmentRoute: RegistrarSectionsClassAssignmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

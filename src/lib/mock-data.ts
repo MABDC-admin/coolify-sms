@@ -7,6 +7,19 @@ export type Student = {
   gpa: number;
   enrolled: string;
   avatar: string;
+  academicYearId?: string;
+  lrn?: string | null;
+  birthDate?: string | null;
+  age?: number | null;
+  gender?: string | null;
+  motherContact?: string | null;
+  motherMaidenName?: string | null;
+  fatherContact?: string | null;
+  fatherName?: string | null;
+  philippineAddress?: string | null;
+  uaeAddress?: string | null;
+  previousSchool?: string | null;
+  sourceFile?: string | null;
 };
 
 export const students: Student[] = [
@@ -20,7 +33,7 @@ export const students: Student[] = [
   { id: "STU-2048", name: "Lucas Kim", grade: "Grade 9", email: "lucas.k@scholaris.edu", status: "Pending", gpa: 3.32, enrolled: "Sep 2024", avatar: "LK" },
 ];
 
-export type Course = {
+export type AcademicLevel = {
   code: string;
   title: string;
   instructor: string;
@@ -31,7 +44,7 @@ export type Course = {
   department: "Mathematics" | "Science" | "Humanities" | "Arts" | "Languages";
 };
 
-export const courses: Course[] = [
+export const academicLevels: AcademicLevel[] = [
   { code: "MATH-301", title: "Advanced Calculus", instructor: "Dr. Elena Voss", room: "B-204", schedule: "Mon/Wed 9:00", capacity: 28, enrolled: 26, department: "Mathematics" },
   { code: "PHYS-210", title: "Quantum Foundations", instructor: "Prof. Marcus Reid", room: "S-110", schedule: "Tue/Thu 10:30", capacity: 24, enrolled: 22, department: "Science" },
   { code: "ENGL-220", title: "Modern Literature", instructor: "Ms. Priya Nair", room: "H-301", schedule: "Mon/Wed/Fri 11:00", capacity: 30, enrolled: 28, department: "Humanities" },
@@ -79,18 +92,18 @@ export const activities: Activity[] = [
 
 export type ClassSlot = {
   time: string;
-  course: string;
+  academicLevel: string;
   room: string;
   instructor: string;
   status: "upcoming" | "in-progress" | "completed";
 };
 
 export const todaysClasses: ClassSlot[] = [
-  { time: "08:00 – 09:30", course: "MATH-301", room: "B-204", instructor: "Dr. Elena Voss", status: "completed" },
-  { time: "09:30 – 11:00", course: "PHYS-210", room: "S-110", instructor: "Prof. Marcus Reid", status: "in-progress" },
-  { time: "11:00 – 12:30", course: "ENGL-220", room: "H-301", instructor: "Ms. Priya Nair", status: "upcoming" },
-  { time: "13:00 – 14:30", course: "HIST-150", room: "H-205", instructor: "Mr. Daniel Cho", status: "upcoming" },
-  { time: "14:00 – 15:30", course: "CHEM-201", room: "S-220", instructor: "Dr. Aisha Bello", status: "upcoming" },
+  { time: "08:00 – 09:30", academicLevel: "MATH-301", room: "B-204", instructor: "Dr. Elena Voss", status: "completed" },
+  { time: "09:30 – 11:00", academicLevel: "PHYS-210", room: "S-110", instructor: "Prof. Marcus Reid", status: "in-progress" },
+  { time: "11:00 – 12:30", academicLevel: "ENGL-220", room: "H-301", instructor: "Ms. Priya Nair", status: "upcoming" },
+  { time: "13:00 – 14:30", academicLevel: "HIST-150", room: "H-205", instructor: "Mr. Daniel Cho", status: "upcoming" },
+  { time: "14:00 – 15:30", academicLevel: "CHEM-201", room: "S-220", instructor: "Dr. Aisha Bello", status: "upcoming" },
 ];
 
 export type PipelineStage = {
@@ -114,7 +127,7 @@ export type AlertItem = {
 };
 
 export const alerts: AlertItem[] = [
-  { id: "al1", title: "Course at capacity", message: "ART-110 is now full (18/18)", severity: "warning" },
+  { id: "al1", title: "Academic level at capacity", message: "ART-110 is now full (18/18)", severity: "warning" },
   { id: "al2", title: "Transcript pending", message: "3 transcript requests awaiting approval", severity: "info" },
   { id: "al3", title: "Low enrollment", message: "CHEM-201 only has 19 of 26 seats filled", severity: "warning" },
   { id: "al4", title: "Grade deadline", message: "Q2 grades due in 2 days", severity: "critical" },

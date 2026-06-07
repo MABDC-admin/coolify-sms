@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Check, Clock, X, FileText, ArrowRight } from "lucide-react";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { advanceApplication, getApplications } from "@/lib/api/sms.functions";
 
 export const Route = createFileRoute("/enrollment")({
   head: () => ({ meta: [{ title: "Enrollment — Scholaris" }] }),
@@ -10,17 +11,6 @@ export const Route = createFileRoute("/enrollment")({
 });
 
 type AppStatus = "New" | "Review" | "Interview" | "Decision";
-type App = { id: string; name: string; grade: string; submitted: string; status: AppStatus; initials: string };
-
-const initial: App[] = [
-  { id: "APP-901", name: "Olivia Hart", grade: "Grade 9", submitted: "2d ago", status: "New", initials: "OH" },
-  { id: "APP-902", name: "Kai Nakamura", grade: "Grade 10", submitted: "3d ago", status: "New", initials: "KN" },
-  { id: "APP-903", name: "Maya Patel", grade: "Grade 11", submitted: "5d ago", status: "Review", initials: "MP" },
-  { id: "APP-904", name: "Theo Laurent", grade: "Grade 9", submitted: "6d ago", status: "Review", initials: "TL" },
-  { id: "APP-905", name: "Iris Chen", grade: "Grade 12", submitted: "1w ago", status: "Interview", initials: "IC" },
-  { id: "APP-906", name: "Daniel Rossi", grade: "Grade 10", submitted: "1w ago", status: "Interview", initials: "DR" },
-  { id: "APP-907", name: "Hana Schmidt", grade: "Grade 11", submitted: "2w ago", status: "Decision", initials: "HS" },
-];
 
 const columns: { key: AppStatus; label: string; tint: string }[] = [
   { key: "New", label: "New Applications", tint: "from-chart-1/20 to-transparent" },
@@ -30,16 +20,15 @@ const columns: { key: AppStatus; label: string; tint: string }[] = [
 ];
 
 function EnrollmentPage() {
-  const [apps, setApps] = useState(initial);
-
-  const advance = (id: string) => {
-    setApps(prev => prev.map(a => {
-      if (a.id !== id) return a;
-      const order: AppStatus[] = ["New", "Review", "Interview", "Decision"];
-      const next = order[Math.min(order.indexOf(a.status) + 1, order.length - 1)];
-      return { ...a, status: next };
-    }));
-  };
+  const queryClient = useQueryClient();
+  const { data: apps = [] } = useQuery({
+    queryKey: ["enrollment-applications"],
+    queryFn: () => getApplications(),
+  });
+  const advance = useMutation({
+    mutationFn: (id: string) => advanceApplication({ data: { id } }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["enrollment-applications"] }),
+  });
 
   return (
     <div className="space-y-5">
@@ -99,7 +88,7 @@ function EnrollmentPage() {
                       <span className="text-[11px] text-muted-foreground">{a.submitted}</span>
                       {col.key !== "Decision" && (
                         <motion.button whileTap={{ scale: 0.94 }}
-                          onClick={() => advance(a.id)}
+                          onClick={() => advance.mutate(a.id)}
                           className="inline-flex items-center gap-1 rounded-full bg-secondary px-2.5 py-1 text-[11px] font-medium hover:bg-accent">
                           Advance <ArrowRight className="h-3 w-3" />
                         </motion.button>
