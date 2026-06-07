@@ -76,3 +76,46 @@ export const activities: Activity[] = [
   { id: "a4", type: "grade", message: "Q2 grades posted for MATH-301", time: "3h ago", initials: "EV" },
   { id: "a5", type: "enrollment", message: "12 new applications received today", time: "5h ago", initials: "+12" },
 ];
+
+export type ClassSlot = {
+  time: string;
+  course: string;
+  room: string;
+  instructor: string;
+  status: "upcoming" | "in-progress" | "completed";
+};
+
+export const todaysClasses: ClassSlot[] = [
+  { time: "08:00 – 09:30", course: "MATH-301", room: "B-204", instructor: "Dr. Elena Voss", status: "completed" },
+  { time: "09:30 – 11:00", course: "PHYS-210", room: "S-110", instructor: "Prof. Marcus Reid", status: "in-progress" },
+  { time: "11:00 – 12:30", course: "ENGL-220", room: "H-301", instructor: "Ms. Priya Nair", status: "upcoming" },
+  { time: "13:00 – 14:30", course: "HIST-150", room: "H-205", instructor: "Mr. Daniel Cho", status: "upcoming" },
+  { time: "14:00 – 15:30", course: "CHEM-201", room: "S-220", instructor: "Dr. Aisha Bello", status: "upcoming" },
+];
+
+export type PipelineStage = {
+  stage: string;
+  count: number;
+  color: string;
+};
+
+export const pipelineStages: PipelineStage[] = [
+  { stage: "New", count: 42, color: "var(--chart-1)" },
+  { stage: "Review", count: 18, color: "var(--chart-2)" },
+  { stage: "Interview", count: 9, color: "var(--chart-3)" },
+  { stage: "Decision", count: 5, color: "var(--chart-4)" },
+];
+
+export type AlertItem = {
+  id: string;
+  title: string;
+  message: string;
+  severity: "warning" | "critical" | "info";
+};
+
+export const alerts: AlertItem[] = [
+  { id: "al1", title: "Course at capacity", message: "ART-110 is now full (18/18)", severity: "warning" },
+  { id: "al2", title: "Transcript pending", message: "3 transcript requests awaiting approval", severity: "info" },
+  { id: "al3", title: "Low enrollment", message: "CHEM-201 only has 19 of 26 seats filled", severity: "warning" },
+  { id: "al4", title: "Grade deadline", message: "Q2 grades due in 2 days", severity: "critical" },
+];
