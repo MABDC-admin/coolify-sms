@@ -1,9 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Users, BookOpen, ClipboardCheck, GraduationCap, ArrowUpRight, Calendar, FileText, UserPlus } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis, Cell, Pie, PieChart } from "recharts";
+import {
+  Users, BookOpen, ClipboardCheck, GraduationCap, ArrowUpRight,
+  Calendar, FileText, UserPlus, Clock, AlertTriangle, AlertCircle,
+  Info, CheckCircle2, ChevronRight
+} from "lucide-react";
+import {
+  Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip,
+  XAxis, YAxis, Cell, Pie, PieChart, Bar, BarChart
+} from "recharts";
 import { StatCard } from "@/components/StatCard";
-import { activities, departmentDistribution, enrollmentTrend } from "@/lib/mock-data";
+import {
+  activities, departmentDistribution, enrollmentTrend,
+  todaysClasses, pipelineStages, alerts
+} from "@/lib/mock-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [{ title: "Dashboard — Scholaris" }] }),
