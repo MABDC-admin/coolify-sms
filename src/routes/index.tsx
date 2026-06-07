@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import {
   Users, BookOpen, ClipboardCheck, GraduationCap, ArrowUpRight,
   Calendar, FileText, UserPlus, Clock, AlertTriangle, AlertCircle,
