@@ -28,6 +28,16 @@ export const registrarModules: RegistrarModule[] = [
     workflows: ["Review today's applications", "Track incomplete requirements", "Monitor movement and enrollment status"],
   },
   {
+    id: "finance-dashboard",
+    label: "Finance Dashboard",
+    path: "/finance",
+    group: "MVP",
+    purpose: "Manage payments, invoices, budget tracking, and financial analytics.",
+    status: "Live",
+    highlights: ["Total Revenue", "Outstanding Balances", "Collection Rate", "Recent Transactions"],
+    workflows: ["Track daily collections", "Review employee payroll", "Monitor annual budget"],
+  },
+  {
     id: "student-registration",
     label: "Student Registration",
     path: "/registration",

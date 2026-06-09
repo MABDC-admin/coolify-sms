@@ -13,6 +13,7 @@ import { Route as StudentsRouteImport } from './routes/students'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as RegistrationRouteImport } from './routes/registration'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as FinanceRouteImport } from './routes/finance'
 import { Route as EnrollmentRouteImport } from './routes/enrollment'
 import { Route as AcademicLevelsRouteImport } from './routes/academic-levels'
 import { Route as IndexRouteImport } from './routes/index'
@@ -41,6 +42,11 @@ const RegistrationRoute = RegistrationRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceRoute = FinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnrollmentRoute = EnrollmentRouteImport.update({
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/academic-levels': typeof AcademicLevelsRoute
   '/enrollment': typeof EnrollmentRoute
+  '/finance': typeof FinanceRoute
   '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/reports': typeof ReportsRoute
@@ -111,6 +118,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/academic-levels': typeof AcademicLevelsRoute
   '/enrollment': typeof EnrollmentRoute
+  '/finance': typeof FinanceRoute
   '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/reports': typeof ReportsRoute
@@ -127,6 +135,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/academic-levels': typeof AcademicLevelsRoute
   '/enrollment': typeof EnrollmentRoute
+  '/finance': typeof FinanceRoute
   '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/reports': typeof ReportsRoute
@@ -144,6 +153,7 @@ export interface FileRouteTypes {
     | '/'
     | '/academic-levels'
     | '/enrollment'
+    | '/finance'
     | '/login'
     | '/registration'
     | '/reports'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/'
     | '/academic-levels'
     | '/enrollment'
+    | '/finance'
     | '/login'
     | '/registration'
     | '/reports'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/'
     | '/academic-levels'
     | '/enrollment'
+    | '/finance'
     | '/login'
     | '/registration'
     | '/reports'
@@ -190,6 +202,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcademicLevelsRoute: typeof AcademicLevelsRoute
   EnrollmentRoute: typeof EnrollmentRoute
+  FinanceRoute: typeof FinanceRoute
   LoginRoute: typeof LoginRoute
   RegistrationRoute: typeof RegistrationRoute
   ReportsRoute: typeof ReportsRoute
@@ -230,6 +243,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finance': {
+      id: '/finance'
+      path: '/finance'
+      fullPath: '/finance'
+      preLoaderRoute: typeof FinanceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enrollment': {
@@ -302,6 +322,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcademicLevelsRoute: AcademicLevelsRoute,
   EnrollmentRoute: EnrollmentRoute,
+  FinanceRoute: FinanceRoute,
   LoginRoute: LoginRoute,
   RegistrationRoute: RegistrationRoute,
   ReportsRoute: ReportsRoute,

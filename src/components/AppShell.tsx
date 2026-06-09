@@ -29,6 +29,7 @@ import {
   GraduationCap,
   ChevronRight,
   LogIn,
+  Wallet,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -37,6 +38,7 @@ import { getRegistrarModuleById, getRegistrarModuleByPath, registrarModules, typ
 
 const moduleIcons: Record<string, typeof LayoutDashboard> = {
   dashboard: LayoutDashboard,
+  "finance-dashboard": Wallet,
   "student-registration": UserPlus,
   "online-registration-review": FileSearch,
   "enrollment-management": ClipboardList,
@@ -64,6 +66,7 @@ const titles: Record<string, { title: string; sub: string }> = {
   "/registration": { title: "Registration", sub: "Learner application capture" },
   "/academic-levels": { title: "Academic Levels", sub: "DEPED-aligned academic level structure" },
   "/enrollment": { title: "Enrollment", sub: "Applications and pipeline" },
+  "/finance": { title: "Finance Dashboard", sub: "Revenue, billing, and budget" },
   "/reports": { title: "Reports", sub: "Insights across the institution" },
 };
 
