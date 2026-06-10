@@ -12,6 +12,7 @@
     "db:import:students-2025-2026": "bun scripts/import-students-2025-2026.ts",
     "db:seed": "bun scripts/seed.ts",
     "db:setup": "bun run db:migrate && bun run db:seed",
+    "db:create-admin": "bun scripts/create-admin.ts",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
@@ -48,6 +49,7 @@
     "@tanstack/react-router": "^1.168.25",
     "@tanstack/react-start": "^1.167.50",
     "@tanstack/router-plugin": "^1.167.28",
+    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -55,6 +57,7 @@
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.40.0",
     "input-otp": "^1.4.2",
+    "jose": "^5.9.6",
     "lucide-react": "^0.575.0",
     "pg": "^8.21.0",
     "react": "^19.2.0",
@@ -74,6 +77,7 @@
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@lovable.dev/vite-tanstack-config": "^2.1.1",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.16.5",
     "@types/pg": "^8.20.0",
     "@types/react": "^19.2.0",
